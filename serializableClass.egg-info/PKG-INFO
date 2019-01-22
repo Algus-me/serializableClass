@@ -1,10 +1,106 @@
 Metadata-Version: 1.0
 Name: serializableClass
-Version: 1.0
+Version: 1.0.1
 Summary: This project makes saving/loading procedure easier for classes with inheritance.
 Home-page: https://github.com/Valtonis/serializableClass.git
 Author: Alexander Gusarin
 Author-email: alex.gusarin@gmail.com
 License: MIT
-Description: UNKNOWN
+Description: SerializableClass
+        =================
+        
+        Purpose
+        -------
+        This small class is made for ease and standardize saving and loading procedures in classes with inheritance in the case when pickle is not applicable.
+        
+        Usage
+        ------------------
+        After you declare a new root class with name ClassName of inheritance you should write following string
+        
+        ClassName.initNewRootOfInheritance()
+        
+        WARNING: do not define __init__ functions with more than one parameter in root class or its descendants.
+        
+        After that type:
+        
+        ClassName.registerClass("someString")
+        
+        You can leave the parameter of registerClass function empty in this case string would be generated automatically.
+        
+        WARNING: do not use equal string parameters in descendants of one root class!
+        
+        Also, each class should have two functions defined:
+        
+        def saveThisObjectDataOnly_(self, folder):
+            pass
+        
+        def loadThisObjectDataOnly_(self, folder):
+            pass
+        
+        This functions should save and load fields of class where they defined, not parent classes fields.
+        
+        Installation
+        ------------------
+        pip install serialazableClass
+        
+        Example
+        ------------------
+        
+        from serializableClass import SerializableClass
+        
+        class rootClass(SerializableClass):
+            def saveThisObjectDataOnly_(self, folder):
+                print("save root")
+        
+            def loadThisObjectDataOnly_(self, folder):
+                print("load root")
+                
+        rootClass.initNewRootOfInheritance()
+        rootClass.registerClass("root")
+        
+        class d1(rootClass):
+            def saveThisObjectDataOnly_(self, folder):
+                print("save d1")
+        
+            def loadThisObjectDataOnly_(self, folder):
+                print("load d1")
+                
+        d1.registerClass("d1")
+        
+        class d2(rootClass):
+            def saveThisObjectDataOnly_(self, folder):
+                print("save d2")
+        
+            def loadThisObjectDataOnly_(self, folder):
+                print("load d2")
+                
+        d2.registerClass("d2")
+        
+        class d3(d1, d2):
+            def saveThisObjectDataOnly_(self, folder):
+                print("save d3")
+        
+            def loadThisObjectDataOnly_(self, folder):
+                print("load d3")
+                
+        d3.registerClass("d3")
+        
+        obj = d3()
+        
+        obj.save("test")
+        
+        #output is
+        #save d3
+        #save d1
+        #save root
+        #save d2
+        
+        obj.load("test")
+        
+        #output is
+        #load root
+        #load d1
+        #load d2
+        #load d3
+        
 Platform: UNKNOWN
