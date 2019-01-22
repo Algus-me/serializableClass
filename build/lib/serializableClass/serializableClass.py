@@ -45,8 +45,8 @@ class SerializableClass:
         for superClass in superClasses:
             self.__class__ = superClass
             if hasattr(superClass, "save") == True and self.getRegistrationFullName() is not None:
-                superClassFolder = os.path.join(folder, self.getRegistrationFullName())
-                self.save_(superClassFolder, alreadySavedClasses)
+                folder = os.path.join(folder, self.getRegistrationFullName())
+                self.save_(folder, alreadySavedClasses)
         self.__class__ = originalClass
         
     def saveThisObjectDataOnly_(self, folder):
@@ -69,10 +69,10 @@ class SerializableClass:
         for superClass in superClasses:
             self.__class__ = superClass
             if hasattr(superClass, "load_") == True and self.getRegistrationFullName() is not None:
-                superClassFolder = os.path.join(folder, self.getRegistrationFullName())
-                if os.path.isdir(superClassFolder) == False:
+                superObjectFolder = os.path.join(folder, self.getRegistrationFullName())
+                if os.path.isdir(superObjectFolder) == False:
                     continue
-                self.load_(superClassFolder)
+                self.load_(superObjectFolder)
                 self.loadThisObjectDataOnly_(folder)
         self.__class__ = originalClass
     

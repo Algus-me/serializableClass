@@ -1,0 +1,10 @@
+README.rst
+setup.py
+serializableClass/__init__.py
+serializableClass/getInheritenceSequence.py
+serializableClass/makeDirectoryIfNotExist.py
+serializableClass/serializableClass.py
+serializableClass.egg-info/PKG-INFO
+serializableClass.egg-info/SOURCES.txt
+serializableClass.egg-info/dependency_links.txt
+serializableClass.egg-info/top_level.txt
