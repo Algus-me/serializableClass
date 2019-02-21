@@ -8,6 +8,9 @@ def getInheritenceSequence(cls):
         pos += 1
     res = ""
     for s in sequence:
-        res += str(s)[8:-2] + "|"
-    res = res[0:-2]
+        className = str(s).split("'")[1]
+        if className == "object":
+            continue
+        res += className.split(".")[1] + "_"
+    res = res[0:-1]
     return res

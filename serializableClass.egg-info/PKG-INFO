@@ -1,6 +1,6 @@
 Metadata-Version: 1.0
 Name: serializableClass
-Version: 1.0.1
+Version: 1.0.2
 Summary: This project makes saving/loading procedure easier for classes with inheritance.
 Home-page: https://github.com/Valtonis/serializableClass.git
 Author: Alexander Gusarin
